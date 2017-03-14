@@ -49,12 +49,12 @@
 				theRightSide.firstChild.removeChild(theRightSide.firstChild.lastChild);
 				
 				theLeftSide.lastChild.onclick = function nextLevel(event){
-													event.stopPropagation();
-													numberOfFaces += 5;
-													theRightSide.removeChild(theRightSide.firstChild);
-													while (theLeftSide.firstChild) 
-														theLeftSide.removeChild(theLeftSide.firstChild);
-													generateFaces();};
+									event.stopPropagation();
+									numberOfFaces += 5;
+									theRightSide.removeChild(theRightSide.firstChild);
+									while (theLeftSide.firstChild) 
+										theLeftSide.removeChild(theLeftSide.firstChild);
+									generateFaces();};
 													
 				theBody.onclick = function gameOver() {
 									alert("Wrong choice....Game Over!");
