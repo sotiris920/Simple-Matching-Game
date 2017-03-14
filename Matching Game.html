@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+    <head>
+		<title>Matching Game</title>
+		<meta name="author" content="Sotiris">
+        <style>
+			img{position:absolute;}
+            div{position:absolute;width:500px;height:500px;} 
+			#rightSide {left: 500px;border-right: 2px solid gray;}
+			#leftSide {border-left: 2px solid gray;border-top: 2px solid gray;border-bottom: 2px solid gray;}
+			h1{color:navy;text-shadow:2px 2px gold;text-align:center;width:1000px;}
+			p{text-align:center;width:1000px;}
+        </style>
+    </head>
+    <body id="theBody" onload="generateFaces()">
+		<h1>Matching Game</h1>
+		<p>Click on the extra One Piece character on the left.</p>
+		<p>If you lose and want to play again, just refresh tha page!</p>
+		<div id="leftSide">
+		</div>
+		<div id="rightSide"></div>
+		
+		<script>
+			var numberOfFaces=5;
+			var theLeftSide = document.getElementById("leftSide");
+			var theRightSide = document.getElementById("rightSide");
+			var theBody = document.getElementsByTagName("body")[0];
+			var counter = 0;
+			
+			function generateFaces(){
+				for(var i=0;i<numberOfFaces;i++){
+					var top_position = Math.random() * 426;
+					var left_position = Math.random() * 426;
+					top_position = Math.floor(top_position);
+					left_position = Math.floor(left_position);
+					var this_img = document.createElement("img");
+					if(counter==0)
+						this_img.src = "http://www.dicasedetonados.com/ps4/one-piece-pirate-warriors-3/trofeus/imgs/Nice-Zoro.png";
+					else if(counter==1)this_img.src = "http://68.media.tumblr.com/avatar_2715d925faef_64.png";
+					else if(counter==2)this_img.src = "http://a.deviantart.net/avatars/a/x/axelvera96.png?2";
+					else if(counter==3)this_img.src = "https://i.exophase.com/psn/awards/s/17b8gb.png";
+					else if(counter==4){this_img.src = "http://www.dicasedetonados.com/ps4/one-piece-pirate-warriors-3/trofeus/imgs/If-we-meet-now-the-promise-will-change-Luffy.png";if(i==numberOfFaces-1)counter=-1;}
+					this_img.style.top = top_position + "px";
+					this_img.style.left = left_position + "px";
+					theLeftSide.appendChild(this_img);
+				}
+				var leftSideImages = theLeftSide.cloneNode(true);
+				theRightSide.appendChild(leftSideImages);
+				theRightSide.firstChild.removeChild(theRightSide.firstChild.lastChild);
+				
+				theLeftSide.lastChild.onclick = function nextLevel(event){
+													event.stopPropagation();
+													numberOfFaces += 5;
+													theRightSide.removeChild(theRightSide.firstChild);
+													while (theLeftSide.firstChild) 
+														theLeftSide.removeChild(theLeftSide.firstChild);
+													generateFaces();};
+													
+				theBody.onclick = function gameOver() {
+									alert("Wrong choice....Game Over!");
+									theBody.onclick = null;
+									theLeftSide.lastChild.onclick = null;};
+				counter++;
+			}
+		</script>
+    </body>
+</html>
