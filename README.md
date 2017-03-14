@@ -1,2 +1,2 @@
 # Simple-Matching-Game
-Aminimal simple matching game in html, css and javascript
+A minimal simple matching game in html, css and javascript.
